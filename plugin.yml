@@ -1,0 +1,6 @@
+name: Fly
+api: 4.0.0
+main: wallypacmero\fly\Loader
+description: "Fly is a plugin that allows you to fly around the world with a simple command"
+version: 1.0.0
+author: wallypacmero
