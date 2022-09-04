@@ -1,4 +1,4 @@
-<?php /** @noinspection PhpPropertyOnlyWrittenInspection */
+<?php
 
 namespace wallypacmero\fly\command;
 
