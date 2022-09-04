@@ -21,9 +21,8 @@ class FlyCommand extends Command
             $sender->sendMessage(TextFormat::RED . "Please use this command in-game.");
             return false;
         }
-        if (!$sender->hasPermission("fly.command")) {
-            $sender->sendMessage(TextFormat::RED . "You do not have permission to use this command.");
-            return false;
+        if(!$this->testPermission($sender)) {
+    return;
         }
         if ($sender->getAllowFlight()) {
             $sender->setAllowFlight(false);
