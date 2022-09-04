@@ -34,15 +34,16 @@ class FlyCommand extends Command
         }
         if(!$this->testPermission($sender)) {
     return;
-        }
-        if ($sender->getAllowFlight()) {
+        }elseif($this->testPermission($sender) {
+          if ($sender->getAllowFlight()) {
             $sender->setAllowFlight(false);
             $sender->setFlying(false);
             $sender->sendMessage(TextFormat::GREEN . "You can no longer fly.");
-        } else {
+          } else {
             $sender->setAllowFlight(true);
             $sender->setFlying(true);
             $sender->sendMessage(TextFormat::GREEN . "You can now fly.");
+          }
         }
         return true;
     }
