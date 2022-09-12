@@ -12,3 +12,4 @@ class Loader extends PluginBase
   $this->getServer()->getCommandMap()->register("fly", new FlyCommand($this));
   $this->getLogger()->info("Enabled");
  }
+}
