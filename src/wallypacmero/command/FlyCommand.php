@@ -1,6 +1,6 @@
 <?php
 
-namespace wallypacmero\fly\command;
+namespace wallypacmero\command;
 
 use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
