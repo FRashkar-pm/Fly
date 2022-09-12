@@ -3,7 +3,7 @@
 namespace wallypacmero;
 
 use pocketmine\plugin\PluginBase;
-use wallypacmero\fly\command\FlyCommand;
+use wallypacmero\command\FlyCommand;
 
 class Loader extends PluginBase
 {
