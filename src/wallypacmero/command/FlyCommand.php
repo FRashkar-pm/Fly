@@ -6,7 +6,6 @@ use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
-use pocketmine\event\player\PlayerJoinEvent;
 
 class FlyCommand extends Command
 {
@@ -16,34 +15,25 @@ class FlyCommand extends Command
         parent::__construct("fly", "Fly command", "/fly", ["f"]);
     }
 
-    public function onPlayerJoin(PlayerJoinEvent $event)
+    public function execute(CommandSender $sender, string $commandLabel, array $args)
     {
-        $player = $event->getPlayer();
-        if($player->getAllowFlight()) {
-            $player->setFlying(false);
-            $player->setAllowFlight(false);
-            $player->sendMessage(TextFormat::RED . "Your flight has been disabled");
-        }
-    }
-
-    public function execute(CommandSender $sender, string $commandLabel, array $args): bool
-    {
-        if (!$sender instanceof Player) {
-            $sender->sendMessage(TextFormat::RED . "Please use this command in-game.");
-            return false;
-        }
-        if(!$this->testPermission($sender)) {
-    return;
-        }
-        if ($sender->getAllowFlight()) {
-            $sender->setAllowFlight(false);
-            $sender->setFlying(false);
-            $sender->sendMessage(TextFormat::GREEN . "You can no longer fly.");
+        if($sender instanceof Player) {
+            if($sender->hasPermission("fly.command")) {
+                if($sender->getAllowFlight()) {
+                    $sender->setFlying(false);
+                    $sender->setAllowFlight(false);
+                    $sender->sendMessage(TextFormat::RED . "Your flight has been disabled");
+                } else {
+                    $sender->setFlying(true);
+                    $sender->setAllowFlight(true);
+                    $sender->sendMessage(TextFormat::GREEN . "Your flight has been enabled");
+                }
+            } else {
+                $sender->sendMessage(TextFormat::RED . "You don't have permission to use this command");
+            }
         } else {
-            $sender->setAllowFlight(true);
-            $sender->setFlying(true);
-            $sender->sendMessage(TextFormat::GREEN . "You can now fly.");
+            $sender->sendMessage(TextFormat::RED . "Please use this command in-game");
         }
-        return true;
     }
 }
+
